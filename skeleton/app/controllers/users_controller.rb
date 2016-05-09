@@ -8,10 +8,10 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      #login user probably
+      sign_in(@user)
       redirect_to links_url
+      # Will get error below if you don't have links/index view created
     else
-      # flash[:errors] = ["an error"]
       flash.now[:errors] = @user.errors.full_messages
       #easy to forget that one
       render :new
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:username, :password)
+    params.require(:user).permit(:password, :username)
   end
 
 

@@ -1,0 +1,9 @@
+<%= link_to("New Link", new_link_url) %>
+<h1>ALL THE LINKS</h1>
+
+<ul>
+<% @links.each do |link| %>
+  <li> <%= link_to(link.title, link_url(link)) %>
+  </li>
+<% end %>
+</ul>
